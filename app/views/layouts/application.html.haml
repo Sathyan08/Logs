@@ -1,0 +1,31 @@
+!!! 5
+%html{ :lang => "en"}
+  %head
+    %meta{ :charset => "utf-8" }
+
+    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
+
+    %title= content_for?(:title) ? yield(:title) : "Git Logs"
+
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "vendor/modernizr"
+    = csrf_meta_tag
+
+  %body
+
+    = render partial: "layouts/header"
+
+    #notifications.row
+      - flash.each do |type, message|
+        .alert-box(class=type data-alert)
+          = message
+          %a.close(href="#") &times;
+
+    .row
+      .small-12.columns
+        #content
+
+
+          = yield
+
+    = javascript_include_tag "application"
