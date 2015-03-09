@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'omniauth-github'
 gem 'haml'
 gem 'foundation-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
