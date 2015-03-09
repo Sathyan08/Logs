@@ -5,14 +5,27 @@
 
     %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
 
-    %title= content_for?(:title) ? yield(:title) : "Untitled"
+    %title= content_for?(:title) ? yield(:title) : "Git Logs"
 
     = stylesheet_link_tag "application"
     = javascript_include_tag "vendor/modernizr"
-    = javascript_include_tag "application", 'data-turbolinks-track' => true
     = csrf_meta_tag
 
   %body
 
-    = yield
+    = render partial: "layouts/header"
 
+    #notifications.row
+      - flash.each do |type, message|
+        .alert-box(class=type data-alert)
+          = message
+          %a.close(href="#") &times;
+
+    .row
+      .small-12.columns
+        #content
+
+
+          = yield
+
+    = javascript_include_tag "application"
